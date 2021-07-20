@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - WASTE MANAGEMENT</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .header {
+            background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(/Content/Img/cover.jpg);
+            background-size: cover;
+            background-position:center;
+            height: 350px;
+        }
+
+        .ban{
+            animation: rot 5s infinite;
+
+        }
+
+        @@keyframes rot{
+            from {rotation:0deg;}
+            to {rotation:360deg;}
+        }
+    </style>
+</head>
+<body>
+    <div class="card bg-light header">
+        <div class="card-body">
+            <div class="container mt-5">
+                <h1 class="display-1 text-center text-white"><b>WASTE MANAGEMENT</b></h1>
+            </div>
+        </div>
+    </div>
+    <img src="~/Content/Img/recycle.png" class="d-flex position-absolute rounded-circle ban" style="top:-10px;left:-50px;" width="400" alt="Alternate Text" />
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success d-flex" style="top:-50px;">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="bi-trash2-fill"></i>&nbsp;TRASURA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="@Url.Action("Home", "Home")">Home</a>
+                    <a class="nav-link active" aria-current="page" href="@Url.Action("Schedule", "Home")">Schedule</a>
+                    @if (Session["ID"] != null)
+                    {
+                        var user = new WasteManagement.Models.tbl_user().Findtbl_user(Convert.ToInt32(Session["ID"]));
+                        if (user.isAdmin)
+                        {
+                            <a class="nav-link" href="@Url.Action("Dashboard", "Schedule")">Dashboard</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="@Url.Action("Report", "Remarks")">Dashboard</a>
+                        }
+                    }
+                    else
+                    {
+                        <a class="nav-link" href="@Url.Action("Login", "TrasuraLogin")">Login</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+ 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

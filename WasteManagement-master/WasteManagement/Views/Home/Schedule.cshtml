@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h4 class="card-title">List of schedule</h4>
+
+@foreach (var item in new WasteManagement.Models.tbl_Schedule().Listtbl_Schedule())
+{
+    <div class="card mb-2">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <div class="card-body">
+                    <i class="fs-1 bi-calendar2-check"></i>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card-body">
+                    <p><b>@item.Schedule</b></p>
+                    <p>@item.Description<br><small class="text-muted">Posted Date: &nbsp;@string.Format("{0:MMMM dd, yyyy hh:mm:ss tt}", Convert.ToDateTime(item.encDate))</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

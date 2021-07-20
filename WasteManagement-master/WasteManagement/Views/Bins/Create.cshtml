@@ -1,0 +1,60 @@
+﻿@model WasteManagement.Models.tbl_Bin
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+
+
+
+
+<div class="card col-md-4">
+    <div class="card-header">
+        <h4>Create Bin</h4>
+    </div>
+    <div class="card-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="row g-2">
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.BinID, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.BinID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BinID, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.CollectorPhone, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.CollectorPhone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CollectorPhone, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-12">
+                    @Html.LabelFor(model => model.DeploymentDate, htmlAttributes: new { @class = "" })
+                    @Html.EditorFor(model => model.DeploymentDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.DeploymentDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="col">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
